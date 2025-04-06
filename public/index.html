@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeNgrave Lambda API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 40px;
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.6;
+        background: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        color: #1e90ff;
+      }
+      code {
+        background: #eee;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      a {
+        color: #1e90ff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .note {
+        background: #fff3cd;
+        padding: 10px;
+        border: 1px solid #ffeeba;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 CodeNgrave Lambda API</h1>
+    <p>
+      This is a Lambda function behind an Express server that powers the backend
+      of the <strong>CodeNgrave</strong> project — a laser engraving toolchain
+      built with:
+    </p>
+    <ul>
+      <li>
+        <strong>Next.js + Tailwind CSS</strong> frontend (<a
+          href="https://codengrave.vercel.app"
+          target="_blank"
+          >View Portal</a
+        >)
+      </li>
+      <li><strong>Node.js + TypeScript</strong> backend</li>
+      <li>
+        Serial communication with <strong>Arduino</strong> for laser control
+      </li>
+    </ul>
+    <h2>🧠 What this API does</h2>
+    <p>
+      It accepts an image file via a <code>POST</code> request and converts it
+      into <strong>G-code</strong>, which can be sent to a laser engraving
+      machine.
+    </p>
+    <h2>📥 Usage</h2>
+    <p>
+      Make a <code>POST</code> request to this endpoint with a form-data field
+      named <code>image</code>. The response will be plain text G-code.
+    </p>
+    <pre><code>
+POST /
+Content-Type: multipart/form-data
+Field: image (attach image file)
+  </code></pre>
+    <h2>🔗 Frontend</h2>
+    <p>
+      For a complete experience, visit the frontend:
+      <a href="https://codengrave.vercel.app" target="_blank"
+        >codengrave.vercel.app</a
+      >
+    </p>
+
+    <div class="note">
+      <strong>Note:</strong> This is a serverless function deployed on AWS
+      Lambda, designed for educational and prototyping use.
+    </div>
+  </body>
+</html>

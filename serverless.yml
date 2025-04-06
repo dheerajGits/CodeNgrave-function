@@ -6,10 +6,27 @@ provider:
   runtime: nodejs18.x
   region: ap-south-1
 
+  httpApi:
+    cors:
+      allowedOrigins:
+        - "*"
+      allowedMethods:
+        - POST
+      allowedHeaders:
+        - Content-Type
+plugins:
+  - serverless-esbuild
+package:
+  include:
+    - public/**
+
 functions:
   api:
     handler: index.handler
     events:
+      - httpApi:
+          path: /
+          method: post
       - httpApi:
           path: /
           method: get

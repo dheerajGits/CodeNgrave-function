@@ -5,7 +5,7 @@ const WORK_AREA_MM = 100;
 
 const RESOLUTION_MM_PER_PIXEL = 1;
 
-export async function generateGCode(imagePath) {
+async function generateGCode(imagePath) {
     try {
   
         const image = await Jimp.read(imagePath);
@@ -27,7 +27,6 @@ export async function generateGCode(imagePath) {
   
         image.resize({w:imageWidthPx, h:imageHeightPx}); 
         image.greyscale(); 
-        await image.write('grayscale_output.jpeg');
   
         let gcode = `
         G21 ; Set units to mm
@@ -36,7 +35,6 @@ export async function generateGCode(imagePath) {
         G0 X0 Y0 ; Move to start
         `;
         console.log(image.bitmap.width);
-        fs.appendFileSync(OUTPUT_FILE, gcode);
   
   
         for (let y = 0; y < image.bitmap.height; y++) {
@@ -82,3 +80,4 @@ export async function generateGCode(imagePath) {
     return ((a & 0xff) << 24) | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
   }
   
+module.exports = { generateGCode };

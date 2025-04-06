@@ -1,11 +1,19 @@
-import express from 'express';
-import multiparty from 'connect-multiparty';
-import { generateGCode } from './generateGCode';
+const express = require('express');
+const multiparty = require('connect-multiparty');
+const { generateGCode } = require('./generateGCode');
+const path = require('path');
+
 
 const app = express();
 const multipartMiddleware = multiparty();
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/upload', multipartMiddleware, async (req, res) => {
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
+app.post('/', multipartMiddleware, async (req, res) => {
     try {
         const file = req.files?.image;
         const path = file?.path;
@@ -20,4 +28,4 @@ app.post('/upload', multipartMiddleware, async (req, res) => {
     
 });
 
-export default app;
+module.exports = app;
